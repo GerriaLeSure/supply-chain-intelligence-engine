@@ -1,0 +1,51 @@
+# Supply Chain Intelligence Pipeline Configuration
+
+data_sources:
+  suppliers:
+    type: "csv"
+    path: "data/raw/suppliers/"
+    refresh_interval: "daily"
+  
+  inventory:
+    type: "csv" 
+    path: "data/raw/inventory/"
+    refresh_interval: "hourly"
+    
+  logistics:
+    type: "csv"
+    path: "data/raw/logistics/"
+    refresh_interval: "real-time"
+    
+  demand:
+    type: "csv"
+    path: "data/raw/demand/"
+    refresh_interval: "daily"
+
+pipeline:
+  batch_size: 10000
+  parallel_processing: true
+  data_quality_checks: true
+  anomaly_detection: true
+  
+models:
+  demand_forecasting:
+    algorithm: "lstm"
+    lookback_window: 90
+    forecast_horizon: 30
+    retrain_frequency: "weekly"
+    
+  inventory_optimization:
+    method: "abc_analysis"
+    service_level: 0.95
+    lead_time_variability: 0.15
+    
+business_rules:
+  cost_optimization_threshold: 0.05
+  risk_tolerance: "medium"
+  automation_level: "high"
+  
+reporting:
+  executive_dashboard: true
+  operational_reports: true
+  predictive_analytics: true
+  frequency: "daily"
